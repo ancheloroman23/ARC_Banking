@@ -1,0 +1,43 @@
+﻿@using ARC_InternetBanking.Core.Application.ViewModels.User
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="container col-6 offset-3 mt-4">
+    <div class="card">
+        <div class="card-header bg-success">
+            <h1 class="text-dark text-center mt-5">Welcome To ARC Banking, El Banco de los rico 😀</h1>
+        </div>
+        <div class="row card-body justify-content-center pt-5 mt-1">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            @if (Model.HasError)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <p>@Model.Error</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <form method="post" asp-controller="User" asp-action="Index">
+                <div class="form-group text-center">
+                    <h1 class="text-dark text-center">Login</h1>
+                </div>
+                <div class="form-group col-10 offset-1 pt-3 mt-2 mb-2">
+                    <input asp-for="Email" type="text" class="form-control bg-white col-10" placeholder="Ingrese su Email">
+                </div>
+                <div class="form-group col-10 offset-1 pb-3 mb-4">
+                    <input asp-for="Password" class="form-control bg-white col-10 " type="password" placeholder="Enter your Password" id="passwordInput">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-5 mt-2">
+                    <input type="submit" class="btn btn-outline-primary rounded col-10 offset-1" value="INGRESAR">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+

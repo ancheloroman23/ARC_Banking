@@ -1,0 +1,46 @@
+﻿@using ARC_InternetBanking.Core.Application.ViewModels.Productos
+@model EstadisticaDashBoard;
+
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-primary shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="text-center">Dashboard</h1>
+                </div>
+                <div class="card-body text-left">
+                    <div class="form-group">
+                        <label class="form-label"><strong>Cantidad de Transacciones Totales: </strong></label>
+                        @Model.TotalTransacciones
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><strong>Cantidad de Transacciones del Día de Hoy:</strong></label>
+                        @Model.TransaccionDiarias
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><strong>Cantidad de Clientes Activos: </strong></label>
+                        @Model.TotalClientesActivos
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><strong>Cantidad de Clientes Inactivos: </strong></label>
+                        @Model.TotalClientesInactivos
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><strong>Cantidad de Pagos Totales: </strong></label>
+                        @Model.TotalPagos
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><strong>Cantidad de Pagos del Dia de Hoy: </strong></label>
+                        @Model.PagoDiarios
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><strong>Cantidad de Total de Productos Asignados: </strong></label>
+                        @(Model.CuentasAhorroTotal + Model.TarjetasCreditoTotal + Model.PrestamoTotal)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

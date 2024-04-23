@@ -1,0 +1,64 @@
+﻿@using ARC_InternetBanking.Core.Application.ViewModels.CuentaAhorro
+@using ARC_InternetBanking.Core.Application.ViewModels.Transacciones
+@using Microsoft.AspNetCore.Http;
+@using ARC_InternetBanking.Core.Application.Enums;
+@inject IHttpContextAccessor httpContextAccessor
+@model SaveTransaccionViewModel;
+@{
+    ViewData["Title"] = "Pago Prestamo";
+    List<CuentaAhorroViewModel> CuentaAhorroViewModels = ViewBag.CuentaAhorros;
+    Model.IdTipoTransaccion = (int)TipoTransacciones.TransferenciaEntreCuentas;
+}
+
+<body>
+    <div class="card col-6 offset-3">
+        <div class="card-header">
+            <div class="form-group text-center pt-3">
+                <h1 class="text-dark">Pago Entre Cuentas</h1>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row justify-content-center pt-5 mt-2 m-1">
+                        @if (Model.HasError)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <h2 class="text-dark">@Model.ErrorMessage</h2>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+                        <form method="post" asp-controller="Payment" asp-action="Transaccion" enctype="multipart/form-data">
+
+                            <div class="form-group mx-sm-4 pt-3 mb-2">
+                            <select asp-for="DestinoNumeroCuenta" asp-items="@(new SelectList(CuentaAhorroViewModels,"NumeroProducto", "NumeroProducto"))" type="text" class="form-control">
+                                    <option value="0">Seleccione una Cuenta de destino</option>
+                                </select>
+                                <span asp-validation-for="DestinoNumeroCuenta" class="text-danger"> </span>
+                            </div>
+
+                            <div class="form-group mx-sm-4 pt-3 mb-2">
+                                <input asp-for="Cantidad" class="form-control" placeholder="Ingrese la Cantidad">
+                                <span asp-validation-for="Cantidad" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mx-sm-4 pt-3 mb-2">
+                            <select asp-for="OriginNumeroCuenta" asp-items="@(new SelectList(CuentaAhorroViewModels,"NumeroProducto", "NumeroProducto"))" type="text" class="form-control">
+                                    <option value="0">Seleccione una cuenta de Origen</option>
+                                </select>
+                                <span asp-validation-for="OriginNumeroCuenta" class="text-danger"> </span>
+                            </div>
+
+                            <input asp-for="IdTipoTransaccion" class="form-control" hidden>
+
+                            <div class="form-group text-center mt-4 mb-5">
+                                <button type="submit" class="btn btn-outline-primary rounded">Realizar Pago</button>
+                                <a asp-controller="Cliente" asp-action="Index" class="btn btn-outline-warning rounded">Volver atras</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+       </div>
+</body>

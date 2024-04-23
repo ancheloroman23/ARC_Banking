@@ -1,0 +1,64 @@
+﻿@* Strong type views *@
+@model List<ARC_InternetBanking.Core.Application.ViewModels.TarjetaCredito.TarjetaCreditoViewModel>
+
+<div class="row align-content-center">
+    <div class="col-8 offset-2">
+
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                Tarjetas de Credito
+                <div class="text-end">
+                    <a class="btn btn-primary float-end text-black" asp-controller="Admin" asp-action="CreateTarjetaCreditos">Crear Tarjeta de Credito</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Numero de Tarjeta</th>
+                            <th scope="col">Limite</th>
+                            <th scope="col">Cantidad Disponible</th>
+                            <th scope="col">Cantidad Adeudado</th>
+                            <th scope="col">Eliminar Tarjeta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.UserName</td>
+                                <td>@item.NumeroProducto</td>
+                                <td>@item.Limite</td>
+                                <td>@item.CantidadActual</td>
+                                <td>@item.Deuda</td>
+
+
+                                <td>
+                                    @if (item.Deuda == 0)
+                                    {
+                                        <a asp-controller="Admin" asp-action="DeleteTarjetaCreditos" asp-route-id="@item.Id" class="btn btn-dark text-light">
+                                            Eliminar
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-dark text-light" disabled data-bs-toggle="tooltip" data-bs-placement="top">
+                                            <i class="fa-solid fa-eraser"></i>
+                                        </button>
+
+                                    }
+
+                                </td>
+                            
+                       </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/47ea8ef61d.js" crossorigin="anonymous"></script>
+    </div>
+</div>

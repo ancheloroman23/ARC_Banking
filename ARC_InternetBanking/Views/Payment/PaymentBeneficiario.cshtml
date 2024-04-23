@@ -1,0 +1,59 @@
+﻿@using ARC_InternetBanking.Core.Application.ViewModels.Beneficiarios
+@using ARC_InternetBanking.Core.Application.ViewModels.CuentaAhorro
+@using ARC_InternetBanking.Core.Application.ViewModels.Transacciones
+@using Microsoft.AspNetCore.Http;
+@using ARC_InternetBanking.Core.Application.Enums;
+@inject IHttpContextAccessor httpContextAccessor
+@model SaveTransaccionViewModel;
+@{
+    ViewData["Title"] = "Pago Beneficiario";
+    List<BeneficiarioViewModel> BeneficiarioViewModels = ViewBag.Beneficiaries;
+    List<CuentaAhorroViewModel> CuentaAhorroViewModels = ViewBag.CuentaAhorros;
+
+    Model.IdTipoTransaccion = (int)TipoTransacciones.PagoTarjetaCredito;
+}
+
+<body>
+    <div class="container col-6 offset-3">
+        <div class="card">
+
+            <div class="card-header text-center pt-3">
+                <h1 class="text-dark">Pago Beneficiario</h1>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center pt-5 mt-5 m-1">
+
+                    <form method="post" asp-controller="Payment" asp-action="PaymentBeneficiario" enctype="multipart/form-data">
+
+
+                        <div class="mb-3">
+                            <select asp-for="DestinoNumeroCuenta" asp-items="@(new SelectList(BeneficiarioViewModels,"IdProducto", "Nombre"))" type="text" class="form-select mb-3" required>
+                                <option value="0">Seleccione Beneficiario</option>
+                            </select>
+                            <span asp-validation-for="DestinoNumeroCuenta" class="text-white"> </span>
+                        </div>
+                        <div class="form-group mx-sm-4 pt-3 mb-2">
+                            <select asp-for="OriginNumeroCuenta" asp-items="@(new SelectList(CuentaAhorroViewModels,"NumeroProducto", "NumeroProducto"))" type="text" class="form-select mb-3" required>
+                                <option value="0">Seleccione la Cuenta donde pagará</option>
+                            </select>
+                            <span asp-validation-for="OriginNumeroCuenta" class="text-white"> </span>
+                        </div>
+                        <div class="form-group mx-sm-4 pt-3 mb-2">
+                            <input asp-for="Cantidad" class="form-control" placeholder="Ingrese la Cantidad">
+                            <span asp-validation-for="Cantidad" class="text-white"> </span>
+                        </div>
+
+                        <input asp-for="IdTipoTransaccion" class="form-control" hidden>
+                        <div class="form-group text-center mt-4 mb-5">
+                            <button type="submit" class="btn btn-outline-primary rounded">Realizar Pago</button>
+                            <a asp-controller="Client" asp-action="Index" class="btn btn-outline-warning rounded">Volver atras</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+

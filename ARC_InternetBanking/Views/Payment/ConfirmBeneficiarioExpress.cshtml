@@ -1,0 +1,44 @@
+﻿@using ARC_InternetBanking.Core.Application.ViewModels.Transacciones
+@using Microsoft.AspNetCore.Http;
+@using ARC_InternetBanking.Core.Application.Enums;
+@inject IHttpContextAccessor httpContextAccessor
+@model SCPagoExpresoViewModel;
+@{
+    ViewData["Title"] = "Confirm Pago Expreso";
+}
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center pt-5 mt-5 m-1">
+            <div class="col-6 offset-3">
+                 <div class="form-group text- center pt-3">
+                        <h1 class="text-light">Pago Beneficiario</h1>
+                    </div>
+                    <div class="card" style="border: 2px solid black;">
+                        <div class="form-group text-center pt-3 text-dark" style="background-color: white;">
+                            <p class="fw-bold">Nombre del Dueño: <label>@Model.Nombre</label></p>
+                            <p class="fw-bold">Apellido del Dueño:  <label>@Model.Apellido</label></p>
+                        <p class="fw-bold">Número de Cuenta del Dueño:  <label>@Model.SaveTransaccionViewModel.DestinoNumeroCuenta</label></p>
+                            <p class="fw-bold">La Cantidad que Depositará: <label>@Model.SaveTransaccionViewModel.Cantidad</label></p>
+                        <p class="fw-bold">Número de Cuenta de Dónde Sale: <label>@Model.SaveTransaccionViewModel.OriginNumeroCuenta</label></p>
+                        </div>
+                        <h5 class="fw-bold text-center">Desea Realizar el Pago</h5>
+                        <div class="form-group text-center mt-4 mb-5">
+                            <a asp-controller="Payment" asp-action="MakeBeneficiarioExpress"
+                           asp-route-AccountHolderId="@Model.SaveTransaccionViewModel.IdUsuarioTitularCuenta"
+                           asp-route-OriginAccount="@Model.SaveTransaccionViewModel.OriginNumeroCuenta"
+                           asp-route-TransaccionTypeId="@Model.SaveTransaccionViewModel.IdTipoTransaccion"
+                           asp-route-Description="@Model.SaveTransaccionViewModel.Descriptcion"
+                           asp-route-DestinationAccount="@Model.SaveTransaccionViewModel.DestinoNumeroCuenta"
+                            asp-route-Amount="@Model.SaveTransaccionViewModel.Cantidad" 
+                            class="btn btn-primary btn-outline-dark" style="background-color: #2f5b75; color: white;">Realizar Pago</a>
+                            <a asp-controller="Cliente" asp-action="Index" class="btn btn-danger">Cancelar</a>
+                            <input asp-for="Nombre" type="hidden" />
+                            <input asp-for="Apellido" type="hidden" />
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+

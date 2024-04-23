@@ -1,0 +1,80 @@
+﻿@* Strong type views *@
+@model List<ARC_InternetBanking.Core.Application.ViewModels.CuentaAhorro.CuentaAhorroViewModel>
+@{
+    string principal = null;
+}
+
+<div class="row align-content-center">
+    <div class="col-8 offset-2">
+
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                 Cuentas de Ahorro
+                <div class="text-end">
+                    <a class="btn btn-primary float-end text-black" asp-controller="Admin" asp-action="CreateCuentaAhorros">Crear Cuenta</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Numero de Cuenta</th>
+                            <th scope="col">Categoria de la Cuenta</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Eliminar Cuenta</th>                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.UserName</td>
+                                <td>@item.NumeroProducto</td>
+                                @if(item.EsPrincipal == true)
+                                {
+                                    principal = "Principal";
+                                }
+                                else
+                                {
+                                    principal = "Secundaria";
+                                }
+                                <td>@principal</td>
+                                <td>@item.Cantidad</td>
+
+                               
+
+                                <td>
+                                    @if (!item.EsPrincipal)
+                                    {
+                                        <a asp-controller="Admin" asp-action="DeleteCuentaAhorros" asp-route-id="@item.Id" class="btn btn-dark text-light">
+                                            Eliminar
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-dark text-light" disabled data-bs-toggle="tooltip" data-bs-placement="top" title="No se puede borrar porque es una cuenta principal">
+                                            Eliminar
+                                        </button>
+                                    }
+                                </td>
+                          
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/47ea8ef61d.js" crossorigin="anonymous"></script>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+

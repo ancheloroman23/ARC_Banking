@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARC_InternetBanking", "ARC_InternetBanking\ARC_InternetBanking.csproj", "{C2CF2A0A-8221-4450-A56C-E0D91CE2F1DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{B11C0F8B-5613-4A77-A766-E71E5417B8FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9D60DCA8-DA4C-42A7-814A-8B1BAF6C3F5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BEDF8F6B-35F8-48AE-B35F-F8404A61FC91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{E7470395-8FE6-4720-9BB3-B27F2626265D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARC_InternetBanking.Core.Domain", "ARC_InternetBanking.Core.Domain\ARC_InternetBanking.Core.Domain.csproj", "{73D93F69-BC0F-4B13-83DB-7C646E0EC8E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARC_InternetBanking.Core.Application", "ARC_InternetBanking.Core.Application\ARC_InternetBanking.Core.Application.csproj", "{616CC825-284B-4AF9-A92E-B090F4370532}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARC_InternetBanking.Infrastructure.Identity", "ARC_InternetBanking.Infrastructure.Identity\ARC_InternetBanking.Infrastructure.Identity.csproj", "{68339B96-A7BF-498E-BAA6-356EF2BC07F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARC_InternetBanking.Infrastructure.Persistence", "ARC_InternetBanking.Infrastructure.Persistence\ARC_InternetBanking.Infrastructure.Persistence.csproj", "{58D46059-A4A8-4215-8566-9C2526E0CEE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARC_InternetBanking.Infrastructure.Shared", "ARC_InternetBanking.Infrastructure.Shared\ARC_InternetBanking.Infrastructure.Shared.csproj", "{5E70B7FA-7956-4B2F-B1D1-AFC8C928D6EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{37C10A86-3640-4413-80AA-2C89DE150DA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2CF2A0A-8221-4450-A56C-E0D91CE2F1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2CF2A0A-8221-4450-A56C-E0D91CE2F1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2CF2A0A-8221-4450-A56C-E0D91CE2F1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2CF2A0A-8221-4450-A56C-E0D91CE2F1DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73D93F69-BC0F-4B13-83DB-7C646E0EC8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73D93F69-BC0F-4B13-83DB-7C646E0EC8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73D93F69-BC0F-4B13-83DB-7C646E0EC8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73D93F69-BC0F-4B13-83DB-7C646E0EC8E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{616CC825-284B-4AF9-A92E-B090F4370532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{616CC825-284B-4AF9-A92E-B090F4370532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{616CC825-284B-4AF9-A92E-B090F4370532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{616CC825-284B-4AF9-A92E-B090F4370532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68339B96-A7BF-498E-BAA6-356EF2BC07F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68339B96-A7BF-498E-BAA6-356EF2BC07F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68339B96-A7BF-498E-BAA6-356EF2BC07F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68339B96-A7BF-498E-BAA6-356EF2BC07F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D46059-A4A8-4215-8566-9C2526E0CEE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D46059-A4A8-4215-8566-9C2526E0CEE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D46059-A4A8-4215-8566-9C2526E0CEE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D46059-A4A8-4215-8566-9C2526E0CEE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E70B7FA-7956-4B2F-B1D1-AFC8C928D6EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E70B7FA-7956-4B2F-B1D1-AFC8C928D6EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E70B7FA-7956-4B2F-B1D1-AFC8C928D6EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E70B7FA-7956-4B2F-B1D1-AFC8C928D6EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2CF2A0A-8221-4450-A56C-E0D91CE2F1DA} = {37C10A86-3640-4413-80AA-2C89DE150DA5}
+		{9D60DCA8-DA4C-42A7-814A-8B1BAF6C3F5E} = {B11C0F8B-5613-4A77-A766-E71E5417B8FB}
+		{BEDF8F6B-35F8-48AE-B35F-F8404A61FC91} = {B11C0F8B-5613-4A77-A766-E71E5417B8FB}
+		{E7470395-8FE6-4720-9BB3-B27F2626265D} = {B11C0F8B-5613-4A77-A766-E71E5417B8FB}
+		{73D93F69-BC0F-4B13-83DB-7C646E0EC8E5} = {BEDF8F6B-35F8-48AE-B35F-F8404A61FC91}
+		{616CC825-284B-4AF9-A92E-B090F4370532} = {BEDF8F6B-35F8-48AE-B35F-F8404A61FC91}
+		{68339B96-A7BF-498E-BAA6-356EF2BC07F0} = {E7470395-8FE6-4720-9BB3-B27F2626265D}
+		{58D46059-A4A8-4215-8566-9C2526E0CEE3} = {E7470395-8FE6-4720-9BB3-B27F2626265D}
+		{5E70B7FA-7956-4B2F-B1D1-AFC8C928D6EF} = {E7470395-8FE6-4720-9BB3-B27F2626265D}
+		{37C10A86-3640-4413-80AA-2C89DE150DA5} = {9D60DCA8-DA4C-42A7-814A-8B1BAF6C3F5E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E233480B-D9B1-46F8-81C2-0FD5DF2EEA13}
+	EndGlobalSection
+EndGlobal

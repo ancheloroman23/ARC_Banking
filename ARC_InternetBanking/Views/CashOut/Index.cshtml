@@ -1,0 +1,57 @@
+﻿@using ARC_InternetBanking.Core.Application.ViewModels.CuentaAhorro
+@using ARC_InternetBanking.Core.Application.ViewModels.RetiroEfectivo
+@using ARC_InternetBanking.Core.Application.ViewModels.TarjetaCredito
+@using Microsoft.AspNetCore.Http;
+@using ARC_InternetBanking.Core.Application.Enums;
+@inject IHttpContextAccessor httpContextAccessor
+@model SaveRetiroEfectivoViewModel;
+@{
+    ViewData["Title"] = "Avance Efectivo";
+    List<TarjetaCreditoViewModel> TarjetaCreditoViewModels = ViewBag.TarjetaCredito;
+    List<CuentaAhorroViewModel> CuentaAhorroViewModels = ViewBag.Account;
+
+   
+}
+
+<body>
+    <div class="container col-6 mt-3 mt-2">
+        <div class="card-header">
+            <div class="form-group text-center pt-3">
+                <h1 class="text-dark">Avance Efectivo</h1>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center pt-5 mt-5 m-1">
+                <form method="post" asp-controller="CashOut" asp-action="Index" enctype="multipart/form-data">
+
+                    <div class="form-group mx-sm-4 pt-3 mb-2">
+                        <select asp-for="NumeroTarjeta" asp-items="@(new SelectList(TarjetaCreditoViewModels,"NumeroProducto", "NumeroProducto"))" type="text" class="form-select mb-3">
+                            <option value="0">Seleccione Tarjeta </option>
+
+                        </select>
+                        <span asp-validation-for="NumeroTarjeta" class="text-white"> </span>
+                    </div>
+
+                    <div class="form-group mx-sm-4 pt-3 mb-2">
+                        <select asp-for="DestinoCuenta" asp-items="@(new SelectList(CuentaAhorroViewModels,"NumeroProducto", "NumeroProducto"))" type="text" class="form-select mb-3">
+                            <option value="0">Seleccione la Cuenta</option>
+
+                        </select>
+                        <span asp-validation-for="DestinoCuenta" class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-group mx-sm-4 pt-3 mb-2">
+                        <input asp-for="Cantidad" class="form-control" placeholder="Ingrese la Cantidad">
+                        <span asp-validation-for="Cantidad" class="text-danger"> </span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-2">Avance</button>
+                </form>
+
+
+            </div>
+        </div>
+        </div>
+      
+</body>
+

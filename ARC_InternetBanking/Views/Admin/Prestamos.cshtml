@@ -1,0 +1,65 @@
+﻿@* Strong type views *@
+@model List<ARC_InternetBanking.Core.Application.ViewModels.Prestamo.PrestamoViewModel>
+
+<div class="row align-content-center">
+    <div class="col-8 offset-2">
+
+        <div class="card mt-2">
+            <div class="card-header bg-success text-light">
+                Prestamos
+                <div class="text-end">
+                    <a class="btn btn-primary float-end text-black" asp-controller="Admin" asp-action="CreatePrestamos">Crear Prestamo</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Numero de Prestamo</th>
+                            <th scope="col">Cantidad de Prestamo</th>
+                            <th scope="col">Monto Pagado</th>
+                            <th scope="col">Eliminar Prestamo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.UserName</td>
+                                <td>@item.NumeroProducto</td>
+                                <td>@item.CantidaPrestamo</td>
+                                <td>@item.CantidadPagada</td>
+
+                                <td>
+                                    @if (item.CantidadPagada == item.CantidaPrestamo)
+                                    {
+                                        <a asp-controller="Admin" asp-action="DeletePrestamos" asp-route-id="@item.Id" class="btn btn-dark text-light">
+                                            Eliminar
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-dark text-light" disabled data-bs-toggle="tooltip" data-bs-placement="top" >
+                                            Eliminar
+                                        </button>
+
+                                    }
+                                    
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/47ea8ef61d.js" crossorigin="anonymous"></script>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>

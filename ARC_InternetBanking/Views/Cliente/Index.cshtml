@@ -1,0 +1,172 @@
+﻿
+@using ARC_InternetBanking.Core.Application.Dtos.Account
+@using ARC_InternetBanking.Core.Application.ViewModels.Productos
+@using ARC_InternetBanking.Core.Domain.Common
+@using Microsoft.JSInterop;
+@using ARC_InternetBanking.Core.Application.Dtos.Account;
+@using ARC_InternetBanking.Core.Application.Dtos.User;
+@using ARC_InternetBanking.Core.Application.Helpers;
+@using Microsoft.AspNetCore.Http;
+@model ProductoViewModel
+@inject IHttpContextAccessor httpContextAccessor
+
+
+@{
+    
+    ViewData["Title"] = "Home";
+    var userInSession = httpContextAccessor.HttpContext.Session.Get<AuthenticationResponse>("user");
+    string filter = "Admin";
+    string userType = "";
+    string principal = null;
+}
+@{
+    filter = ViewBag.Filter != null ? ViewBag.Filter : "Admin";
+    userType = filter == "Admin" ? "Admin" : "Client";
+
+    string adminUrlWithParam = Url.Action("UpdateFilter", "Admin", new { newFilter = "Client"});
+    string clientUrlWithParam = Url.Action("UpdateFilter", "Admin", new { newFilter = "Admin" });
+
+}
+
+@if(Model == null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <h2>No Hay Productos Disponibles </h2>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<section>
+            <div class="container mt-2">
+                <div class="row">
+                    <div class="card">
+                <div class="card-header bg-primary text-light">
+                            Listado de Productos
+                        </div>
+                        <div class="card-body">
+                    <div class="col-10 offset-1">
+                        <h2 class="bg-success text-light text-center">Cuentas Ahorros</h2>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Numero de Cuenta</th>
+                                    <th scope="col">Categoría de la Cuenta</th>
+                                    <th scope="col">Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CuentaAhorros)
+                                {
+                                    <tr>
+                                        <td>@item.NumeroProducto</td>
+                                        @if (item.EsPrincipal == true)
+                                        {
+                                            principal = "Principal";
+                                        }
+                                        else
+                                        {
+                                            principal = "Secundaria";
+                                        }
+                                        <td>@principal</td>
+                                        <td>RD $@item.Cantidad</td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                    <div class="col-10 offset-1">
+                        <h2 class="bg-warning text-light text-center">Tarjetas Créditos</h2>
+                        @if (Model.TarjetaCreditos.Count > 0)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Numero de Tarjeta</th>
+                                        <th scope="col">Limite</th>
+                                        <th scope="col">Disponible</th>
+                                        <th scope="col">Monto Adeudado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var TarjetaCredito in Model.TarjetaCreditos)
+                                    {
+                                            <tr>
+                                            <td>@TarjetaCredito.NumeroProducto</td>
+                                                <td>RD $@TarjetaCredito.Limite</td>
+                                                <td>RD $@TarjetaCredito.CantidadActual</td>
+                                                <td>RD $@TarjetaCredito.Deuda</td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <h2 class="text-center">No hay Tarjeta de Credito</h2>
+                        }
+                    </div>
+                <div class="col-10 offset-1">
+                    <h2 class="bg-danger text-light text-center">Prestamos</h2>
+                    @if (Model.Prestamos.Count > 0)
+                    {
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Numero de Préstamo</th>
+                                    <th scope="col">Cantidad de Préstamo</th>
+                                    <th scope="col">Monto a Pagar</th>
+                                    <th scope="col">Cantidad Pagada</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Prestamos)
+                                {
+                                    var AmountToPaid = @item.CantidaPrestamo - @item.CantidadPagada;
+                                     <tr>
+                                        <td>@item.NumeroProducto</td>
+                                        <td>RD $@item.CantidaPrestamo</td>
+                                        <td>RD $@AmountToPaid</td>
+                                        <td>RD $@item.CantidadPagada</td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+
+                    }
+                    else
+                    {
+                        <h2 class="text-center">No hay Prestamo</h2>
+                    }
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+            </div>
+</section>
+
+<script>
+    function updateFilter() {
+        var filterSelect = document.getElementById('filterSelect');
+        var selectedValue = filterSelect.options[filterSelect.selectedIndex].value;
+        window.location.href = selectedValue; 
+}
+
+    document.getElementById('userStatusButton').addEventListener('click', function (e) {
+        e.preventDefault();
+        $('#statusChangeModal').modal('show');
+    });
+
+    document.getElementById('confirmStatusChangeButton').addEventListener('click', function (e) {
+        document.getElementById('userStatusForm').submit();
+    });
+
+</script>
+
+
+
